@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import commonRouter from "@/router/modules/common";
 
-
 Vue.use(VueRouter);
 
 /**
