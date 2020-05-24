@@ -14,7 +14,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/showSquare',
+            path: 'showSquare',
             name: 'showSquare',
             component: ()=> import('@/views/lookAround/haveALook'),
             meta: {
@@ -22,7 +22,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/publish-picture',
+            path: 'publish-picture',
             name: 'publish-picture',
             component: ()=> import('@/views/publish/publish-picture'),
             meta: {
@@ -30,7 +30,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/publish-topic',
+            path: 'publish-topic',
             name: 'publish-topic',
             component: ()=> import('@/views/publish/publish-topic'),
             meta: {
@@ -38,7 +38,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/mine-fans',
+            path: 'mine-fans',
             name: 'mine-fans',
             component: ()=> import('@/views/mine/fans'),
             meta:{
@@ -46,7 +46,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/mine-concern',
+            path: 'mine-concern',
             name: 'mine-concern',
             component: ()=> import('@/views/mine/concern'),
             meta:{
@@ -54,7 +54,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/mine-collection',
+            path: 'mine-collection',
             name: 'mine-collection',
             component: ()=> import('@/views/mine/collection'),
             meta:{
@@ -62,7 +62,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/mine-personalMessage',
+            path: 'mine-personalMessage',
             name: 'mine-personalMessage',
             component: ()=> import('@/views/mine/personalMessage'),
             meta:{
@@ -70,7 +70,7 @@ const commonRouter = {
             }
         },
         {
-            path: '/mine-history',
+            path: 'mine-history',
             name: 'mine-history',
             component: ()=> import('@/views/mine/history'),
             meta:{
