@@ -1,70 +1,48 @@
 <template>
-    <div class="test">
-    <h1>测试默认嵌套路由主页</h1>
-    <h1>1</h1>
-    <h1>2</h1>
-    <h1>3</h1>
-    <h1>4</h1>
-    <h1>5</h1>
-    <h1>6</h1>
-    <h1>7</h1>
-    <h1>8</h1>
-    <h1>9</h1>
-    <h1>10</h1>
-    <h1>11</h1>
-    <h1>12</h1>
-    <h1>13</h1>
-    <h1>14</h1>
-    <h1>15</h1>
-    <h1>16</h1>
-    <h1>17</h1>
-    <h1>18</h1>
-    <h1>19</h1>
-    <h1>20</h1>
-    <h1>21</h1>
-    <h1>22</h1>
-    <h1>23</h1>
-    <h1>24</h1>
-    <h1>25</h1>
-    <h1>26</h1>
-    <h1>27</h1>
-    <h1>28</h1>
-    <h1>29</h1>
-    <h1>30</h1>
-    <h1>31</h1>
-    <h1>32</h1>
-    <h1>33</h1>
-    <h1>34</h1>
-    <h1>35</h1>
-    <h1>36</h1>
-    <h1>37</h1>
-    <h1>38</h1>
-    <h1>39</h1>
-    <h1>40</h1>
-    <h1>41</h1>
-    <h1>42</h1>
-    <h1>43</h1>
-    <h1>44</h1>
-    <h1>45</h1>
-    <h1>46</h1>
-    <h1>47</h1>
-    <h1>48</h1>
-    <h1>49</h1>
-    <h1>50</h1>
+    <div class="infinite-list-wrapper" >
+        <ul     class="list"
+                v-infinite-scroll="load"
+                :infinite-scroll-disabled="disabled"
+                :infinite-scroll-distance="21"
+        >
+            <li v-for="i in count" class="list-item">{{ i }}</li>
+        </ul>
+        <p v-if="loading">加载中...</p>
+        <p v-if="noMore">没有更多了</p>
     </div>
 </template>
 
 <script>
     export default {
-        data() {
-            return {}
+        data () {
+            return {
+                count: 35,
+                loading: false
+            }
         },
-        mounted: function () {
+        computed: {
+            noMore () {
+                return this.count >= 70
+            },
+            disabled () {
+                return this.loading || this.noMore
+            }
         },
-        methods: {}
+        methods: {
+            load () {
+                this.loading = true
+                setTimeout(() => {
+                    this.count += 5
+                    this.loading = false
+                }, 1000)
+            }
+        }
     }
 </script>
 
 <style scoped>
-
+    .infinite-list-wrapper{
+        overflow : auto;
+        height: 100%;
+    }
 </style>

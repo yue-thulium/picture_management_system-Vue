@@ -15,22 +15,22 @@
                     <i class="el-icon-user-solid"></i>
                     <span>我的</span>
                 </template>
-                    <el-menu-item index="/mine-fans">粉丝</el-menu-item>
-                    <el-menu-item index="/mine-concern">关注</el-menu-item>
-                    <el-menu-item index="/mine-collection">收藏</el-menu-item>
-                    <el-menu-item index="/mine-personalMessage">私信</el-menu-item>
-                    <el-menu-item index="/mine-history">历史</el-menu-item>
+                    <el-menu-item index="mine-fans">粉丝</el-menu-item>
+                    <el-menu-item index="mine-concern">关注</el-menu-item>
+                    <el-menu-item index="mine-collection">收藏</el-menu-item>
+                    <el-menu-item index="mine-personalMessage">私信</el-menu-item>
+                    <el-menu-item index="mine-history">历史</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
                     <i class="el-icon-menu" slot="title"></i>
                     <span slot="title">随便看看</span>
-                <el-menu-item index="/showSquare">图册</el-menu-item>
+                <el-menu-item index="showSquare">图册</el-menu-item>
             </el-submenu>
             <el-submenu index="3" >
                 <i class="el-icon-edit-outline" slot="title"></i>
                 <span slot="title">发表</span>
-                <el-menu-item index="/publish-topic">话题</el-menu-item>
-                <el-menu-item index="/publish-picture">图片</el-menu-item>
+                <el-menu-item index="publish-topic">话题</el-menu-item>
+                <el-menu-item index="publish-picture">图片</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
                 <i class="el-icon-setting" slot="title"></i>
