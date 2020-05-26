@@ -11,5 +11,5 @@
 </script>
 
 <style scoped>
-
+    .mine-collection{}
 </style>

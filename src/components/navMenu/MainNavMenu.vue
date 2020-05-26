@@ -1,5 +1,5 @@
 <template>
-    <el-col :span="12">
+    <el-col :span="16">
         <el-menu
                 :router="true"
                 default-active="$route.path"
