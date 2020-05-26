@@ -27,7 +27,7 @@
     .tag{
         max-width: 72px;
         height: 28px;
-        margin: 10px 8px 0 0;
+        margin: 10px 10px 5px 5px;
         padding: 0 12px;
         box-sizing: border-box;
         border-radius: 6px;

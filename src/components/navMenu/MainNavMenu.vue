@@ -62,7 +62,7 @@
 
 <style scoped>
     .el-menu {
-        height:700px;
+        height:auto;
         min-width: 180px;
     }
     .el-submenu .el-menu-item{

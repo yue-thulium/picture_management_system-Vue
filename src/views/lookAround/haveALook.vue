@@ -1,11 +1,10 @@
 <template>
-    <div class="main-square" style='height:100%'>
-        <ul     class="list"
-                v-infinite-scroll="load"
-                :infinite-scroll-disabled="disabled"
-                :infinite-scroll-distance="3"
-
-        >
+    <div class="main-square"
+         v-infinite-scroll="load"
+         :infinite-scroll-disabled="disabled"
+         :infinite-scroll-distance="1"
+         :infinite-scroll-immediate="false">
+        <ul     class="list">
             <li v-for="i in count" class="list-item">
                 <img-item></img-item>
             </li>
@@ -26,9 +25,11 @@
         },
         data () {
             return {
-                count: 3,
-                loading: false
+                count: 6,
+                loading: false,
             }
+        },
+        mounted () {
         },
         computed: {
             noMore () {
@@ -44,26 +45,31 @@
                 setTimeout(() => {
                     this.count += 3
                     this.loading = false
-                }, 1000)
-            }
+                }, 200)
+            },
         }
     }
 </script>
 
 <style scoped>
     .main-square{
-        overflow : auto;
-        height: 2000px;
-        width: 100%;
+        overflow: auto;
+        padding: 0;
+        height: 100%;
+        width: 1000px;
+        flex: 5;
     }
     .list-item{
-        z-index: 999;
+        background-color: white;
+        height: auto;
+        padding: 0 15px;
     }
     ul{
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
+        padding: 0;
+        margin: 0;
     }
     li{
         list-style:none;
