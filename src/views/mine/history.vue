@@ -25,5 +25,7 @@
 </script>
 
 <style scoped>
-
+    .mine-history{
+        z-index: 999;
+    }
 </style>

@@ -29,7 +29,6 @@
 <style scoped>
     .li-item{
         max-width: 450px;
-
     }
     .user-photo{
         width: 35px;

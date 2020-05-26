@@ -20,5 +20,7 @@
 </script>
 
 <style scoped>
-
+    .mine-personalMessage{
+        z-index: 999;
+    }
 </style>

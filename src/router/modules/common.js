@@ -6,14 +6,6 @@ const commonRouter = {
     component: mainPage,
     children: [
         {
-            path: 'showSquare',
-            name: 'showSquare',
-            component: ()=> import('@/views/lookAround/haveALook'),
-            meta: {
-                title: '随便看哈都不准？'
-            }
-        },
-        {
             path: 'test',
             name: 'test',
             component: () => import('../../views/mainpage/testPage'),
@@ -21,7 +13,14 @@ const commonRouter = {
                 title: '嵌套路由测试页'
             }
         },
-
+        {
+            path: 'showSquare',
+            name: 'showSquare',
+            component: ()=> import('@/views/lookAround/haveALook'),
+            meta: {
+                title: '随便看哈都不准？'
+            }
+        },
         {
             path: 'publish-picture',
             name: 'publish-picture',

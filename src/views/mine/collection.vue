@@ -11,5 +11,7 @@
 </script>
 
 <style scoped>
-    .mine-collection{}
+    .mine-collection{
+        z-index: 999;
+    }
 </style>

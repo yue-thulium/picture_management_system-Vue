@@ -20,5 +20,7 @@
 </script>
 
 <style scoped>
-
+    .publish-picture{
+        z-index: 999;
+    }
 </style>

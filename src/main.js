@@ -10,8 +10,10 @@ import {getRequest} from './utils/axiousApi'
 import {postRequest} from './utils/axiousApi'
 import {uploadFileRequest} from './utils/axiousApi'
 import {getToken} from "@/utils/auth";
+import VueParticles from 'vue-particles'
 
 Vue.use(Element)
+Vue.use(VueParticles)
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.uploadFileRequest = uploadFileRequest;

@@ -26,5 +26,7 @@
 </script>
 
 <style scoped>
-
+    .publish-topic{
+        z-index: 999;
+    }
 </style>

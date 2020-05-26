@@ -30,5 +30,7 @@
 </script>
 
 <style scoped>
-
+    .mine-concern{
+        z-index: 999;
+    }
 </style>

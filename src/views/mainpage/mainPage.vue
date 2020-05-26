@@ -6,7 +6,7 @@
                 <div class="aside">
                     <img src="~assets/img/userPhoto.jpg" alt="头像">
                     <h5>不充钱不给看嗷！</h5>
-                    <MainNavMenu><router-view></router-view></MainNavMenu>
+                    <MainNavMenu></MainNavMenu>
                 </div>
             </el-aside>
             <el-main class="main">
@@ -46,6 +46,7 @@
     .aside {
         flex:2;
         position: fixed;
+        z-index: 999;
     }
     .main{
         flex:5;
@@ -56,6 +57,6 @@
     }
     .page-container{
         background-color: #f5f5fa;
-
+        z-index: 999;
     }
 </style>

@@ -30,5 +30,7 @@
 </script>
 
 <style scoped>
-
+    .mine-fans{
+        z-index: 999;
+    }
 </style>

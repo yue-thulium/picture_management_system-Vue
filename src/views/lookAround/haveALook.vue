@@ -56,6 +56,9 @@
         height: 2000px;
         width: 100%;
     }
+    .list-item{
+        z-index: 999;
+    }
     ul{
         display: flex;
         flex-direction: row;
