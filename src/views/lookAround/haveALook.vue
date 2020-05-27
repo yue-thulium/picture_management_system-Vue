@@ -53,9 +53,7 @@
 
 <style scoped>
     .main-square{
-        overflow: auto;
         padding: 0;
-        height: 100%;
         width: 1000px;
         flex: 5;
     }
@@ -65,6 +63,7 @@
         padding: 0 15px;
     }
     ul{
+        height: 100%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;

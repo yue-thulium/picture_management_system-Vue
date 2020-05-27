@@ -81,13 +81,14 @@
          display: flex;
          flex-wrap: wrap;
          padding-top: 63px;
-         overflow: visible;
+         overflow: scroll;
+         overflow-x: hidden;
     }
     .page-container{
         display: flex;
-        height: 850px;
+        height: 100%;
         flex-direction: column;
-        overflow: auto;
+        overflow: hidden;
     }
     a, abbr, acronym, address, applet, article, aside, audio, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details,
     dfn, div, dl, dt, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, iframe, img, ins, kbd,

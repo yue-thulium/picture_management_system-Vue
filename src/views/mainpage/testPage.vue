@@ -42,8 +42,9 @@
 
 <style scoped>
     .infinite-list-wrapper{
-        overflow : auto;
-        height: 100%;
         width: 100%;
+    }
+    ul{
+        height: 100%;
     }
 </style>
