@@ -1,24 +1,27 @@
 <template>
     <div class="page-container" :style="{height:fullHeight+'px'}">
         <div class="page-header">
+            <Header></Header>
             <h2>这里用来写一些标题头</h2>
         </div>
         <div class="page-main" >
-            <router-view/>
             <div class="page-side-wrapper">
-                <img src="~assets/img/userPhoto.jpg" alt="头像">
-                <h5>不充钱不给看嗷！</h5>
                 <main-nav-menu/>
             </div>
+            <transition name="move" mode="out-in">
+                 <router-view/>
+            </transition>
         </div>
     </div>
 </template>
 
 <script>
     import MainNavMenu from "../../components/navMenu/MainNavMenu";
+    import Header from "../../components/header/Header";
     export default {
         components:{
             MainNavMenu,
+            Header,
         },
         data() {
             return {
@@ -52,13 +55,6 @@
 </script>
 
 <style scoped>
-    img{
-        width: 100px;
-        height: 100px;
-    }
-    h5{
-        margin: 2px;
-    }
     .page-header{
         width: 100%;
         position: absolute;
@@ -66,19 +62,21 @@
         height: 50px;
         text-align: center;
         box-shadow: 0 2px 8px 0 rgba(0,0,0,.05);
-        background-color: #fff;
     }
     .page-side-wrapper{
         position: fixed;
-        right: 50px;
-        flex:2;
-        width: auto;
+        top:0;
+        left: 0;
+        width: 210px !important;
+        bottom: 0;
+        overflow: hidden;
+        padding-top: 63px;
+        z-index: 1000;
+        height: 100%;
     }
 
      .page-main{
-         width: 100%;
          height: 100%;
-         display: flex;
          flex-wrap: wrap;
          padding-top: 63px;
          overflow: scroll;

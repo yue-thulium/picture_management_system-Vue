@@ -53,8 +53,10 @@
 
 <style scoped>
     .main-square{
+        position: relative;
+        margin-left: 210px;
         padding: 0;
-        width: 1000px;
+        width: 100%;
         flex: 5;
     }
     .list-item{

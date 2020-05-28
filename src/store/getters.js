@@ -5,7 +5,8 @@ const getters = {
     roles: state => state.user.role,
     sex: state => state.user.sex,
     phone: state => state.user.phone,
-    birthdata: state => state.user.birthdata
+    birthdata: state => state.user.birthdata,
+    collapse: state =>state.controlSidebar.collapse,
 }
 
 export default getters
