@@ -15,7 +15,18 @@
 
 <script>
     export default {
-        name: "publish-picture"
+        name: "publish-picture",
+        data(){
+            return {
+
+            }
+        },
+        methods:{
+
+        },
+        created() {
+            console.log(this.$route.params);
+        }
     }
 </script>
 

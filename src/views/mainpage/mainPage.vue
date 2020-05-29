@@ -51,10 +51,8 @@
 
 <style scoped>
      .page-main{
-         height: 100%;
-         flex-wrap: wrap;
-         padding-top: 63px;
-         overflow: scroll;
+         padding-top: 25px;
+         overflow: auto;
          overflow-x: hidden;
     }
     .page-container{
