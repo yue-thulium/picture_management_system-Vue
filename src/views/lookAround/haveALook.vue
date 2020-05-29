@@ -5,7 +5,7 @@
          :infinite-scroll-distance="1"
          :infinite-scroll-immediate="false">
         <ul     class="list">
-            <li v-for="i in count" class="list-item">
+            <li v-for="i in count" :key="i" class="list-item">
                 <img-item></img-item>
             </li>
         </ul>

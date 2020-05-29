@@ -1,13 +1,8 @@
 <template>
     <div class="page-container" :style="{height:fullHeight+'px'}">
-        <div class="page-header">
             <Header></Header>
-            <h2>这里用来写一些标题头</h2>
-        </div>
-        <div class="page-main" >
-            <div class="page-side-wrapper">
-                <main-nav-menu/>
-            </div>
+            <main-nav-menu/>
+        <div class="page-main"id="page-main">
             <transition name="move" mode="out-in">
                  <router-view/>
             </transition>
@@ -55,26 +50,6 @@
 </script>
 
 <style scoped>
-    .page-header{
-        width: 100%;
-        position: absolute;
-        top: 0;
-        height: 50px;
-        text-align: center;
-        box-shadow: 0 2px 8px 0 rgba(0,0,0,.05);
-    }
-    .page-side-wrapper{
-        position: fixed;
-        top:0;
-        left: 0;
-        width: 210px !important;
-        bottom: 0;
-        overflow: hidden;
-        padding-top: 63px;
-        z-index: 1000;
-        height: 100%;
-    }
-
      .page-main{
          height: 100%;
          flex-wrap: wrap;

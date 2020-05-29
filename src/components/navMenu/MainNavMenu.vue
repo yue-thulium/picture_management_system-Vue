@@ -1,11 +1,9 @@
 <template>
     <div class="sideBar">
-        <img src="~assets/img/userPhoto.jpg" alt="头像">
-        <h5>不充钱不给看嗷！</h5>
         <el-col :span="16">
             <el-menu
                     :router="true"
-                    default-active="$route.path"
+                    :default-active="onRoutes"
                     class="el-menu-vertical-demo"
                     @open="handleOpen"
                     @close="handleClose"
@@ -57,6 +55,11 @@
         },
         created() {
         },
+        computed:{
+            onRoutes(){
+                return this.$route.path.replace("/mainPage/", "");
+            },
+        },
         methods: {
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
@@ -70,17 +73,22 @@
 
 <style scoped>
     .sideBar{
-        height: 100%;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        z-index: 999;
     }
-    img{
-        width: 100px;
-        height: 100px;
-    }
-    h5{
-        margin: 2px;
+    .sidebar::-webkit-scrollbar {
+        width: 0;
     }
     .el-menu {
         height:100%;
+    }
+    .el-col-16{
+        width: 100%;
     }
     .el-submenu .el-menu-item{
         min-width: auto;

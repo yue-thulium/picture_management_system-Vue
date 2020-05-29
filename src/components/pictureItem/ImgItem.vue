@@ -7,7 +7,20 @@
         <picture-article>
             <a class="picture-text" href="#" slot="text">这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题</a>
         </picture-article>
-        <img src="~assets/img/testImg.jpg" style="max-height:600px; max-width:406px" alt="测试用图">
+<!--        <img src="~assets/img/testImg.jpg" style="max-height:600px; max-width:406px" alt="测试用图">-->
+        <el-image
+                style="max-width: 406px; max-height: 600px"
+                :src="url"
+                :preview-src-list="urlList"
+                @error="error">
+            <div slot="placeholder" class="image-slot">
+                <i class="el-icon-loading"></i>加载中
+            </div>
+            <div slot="error" class="image-slot">
+                <i class="el-icon-picture-outline"></i>
+            </div>
+
+        </el-image>
         <tab-bar-item/>
     </div>
 </template>
@@ -18,10 +31,22 @@
     import TabBarItem from "../tabbar/TabBarItem";
     export default {
         name: "ImgItem",
+        data(){
+            return {
+                url:"http://120.27.241.26/group1/M00/00/00/rBDDUl6RT6uAAmclAARd6OrYEI4579.jpg",
+                urlList:['http://120.27.241.26/group1/M00/00/00/rBDDUl6RT6uAAmclAARd6OrYEI4579.jpg'],
+                isShow:false,
+            }
+        },
         components:{
             UserPhoto,
             PictureArticle,
             TabBarItem,
+        },
+        methods:{
+            error(Error){
+                console.log(Error);
+            }
         }
     }
 </script>
