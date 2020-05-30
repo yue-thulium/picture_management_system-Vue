@@ -53,11 +53,10 @@
 
 <style scoped>
     .mine-collection{
-        position: relative;
-        margin-left: 210px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 0;
-        width: 100%;
-        flex: 5;
     }
     .list-item{
         background-color: white;
@@ -68,7 +67,7 @@
         height: 100%;
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
+        width: 1180px;
         padding: 0;
         margin: 0;
     }

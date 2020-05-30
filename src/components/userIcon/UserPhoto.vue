@@ -1,13 +1,39 @@
 <template>
     <div class="user-title">
-       <slot name="user-photo"><img class="user-photo" src="~assets/img/userPhoto.jpg" alt="用户头像"></slot>
+       <slot name="user-photo">
+           <el-image
+                   alt="用户头像"
+                   class="user-photo"
+                   :src="userPhoto"
+                   @error="error">
+               <div slot="placeholder" class="image-slot">
+                   <i class="el-icon-loading"></i>加载中
+               </div>
+               <div slot="error" class="image-slot">
+                   <i class="el-icon-picture-outline"></i>
+               </div>
+           </el-image>
+       </slot>
         <slot name="user-name"><a class="user-name" href="#">往左8°是魔法的角度 ℡</a></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: "UserPhoto"
+        name: "UserPhoto",
+        props:{
+            userPhoto: {
+                type: String,
+                default(){
+                    return require("assets/img/userPhoto.jpg");
+                }
+            },
+        },
+        methods:{
+            error(Error){
+                console.log(Error);
+            },
+        }
     }
 </script>
 

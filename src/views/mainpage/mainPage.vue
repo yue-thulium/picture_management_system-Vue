@@ -51,7 +51,10 @@
 
 <style scoped>
      .page-main{
-         padding-top: 25px;
+         position: absolute;
+         left: 126px;
+         top: 70px;
+         width: 100%;
          overflow: auto;
          overflow-x: hidden;
     }

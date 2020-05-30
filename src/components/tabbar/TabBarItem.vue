@@ -1,7 +1,7 @@
 <template>
     <div class="tab-bar-item">
         <slot name="tabBar">
-            <a class="tag" href="" target="_blank" v-for="text in tabItems">{{text}}</a>
+            <a class="tag" href="" target="_blank" v-for="text in tabItems" :key="text">{{text}}</a>
         </slot>
     </div>
 </template>

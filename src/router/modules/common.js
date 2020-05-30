@@ -59,7 +59,12 @@ const commonRouter = {
             component: ()=> import('@/views/mine/collection'),
             meta:{
                 title: '我的收藏'
-            }
+            },
+        },
+        {
+            path:'imgItem-detail',
+            name:'imgItem-detail',
+            component: ()=> import('@/views/mine/ImgItemDetail'),
         },
         {
             path: 'mine-personalMessage',

@@ -81,7 +81,7 @@
         overflow-y: auto;
         z-index: 999;
     }
-    .sidebar::-webkit-scrollbar {
+    ::-webkit-scrollbar {
         width: 0;
     }
     .el-menu {

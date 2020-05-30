@@ -6,7 +6,11 @@
         </user-photo>
         <span class="picture-date">{{date}}</span>
         <picture-article>
-            <a class="picture-text" href="#" slot="text" @click="showContent">这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题</a>
+            <router-link tag="a" slot="text" class="picture-text"
+                         :to="{name:'imgItem-detail',params: { text: 123 },query: { plan: 'private' }}"
+            >
+             这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题这里是标题
+            </router-link>
         </picture-article>
 <!--        <img src="~assets/img/testImg.jpg" style="max-height:600px; max-width:406px" alt="测试用图">-->
         <el-image

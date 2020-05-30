@@ -22,7 +22,9 @@ Vue.config.productionTip = false
 
 router.beforeEach(async(to, from, next) => {
   const hasToken = getToken();
-  document.title = to.meta.title;
+  if(to.meta) {
+    document.title = to.meta.title||to.params.text;
+  }
   if (hasToken) {
     if (to.path === '/loginPage') {
       next({path : '/mainPage/test'})
