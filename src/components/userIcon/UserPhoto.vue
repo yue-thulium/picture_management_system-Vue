@@ -14,7 +14,7 @@
                </div>
            </el-image>
        </slot>
-        <slot name="user-name"><a class="user-name" href="#">往左8°是魔法的角度 ℡</a></slot>
+        <slot name="user-name"><a class="user-name" href="#">{{userNmae}}</a></slot>
     </div>
 </template>
 
@@ -28,6 +28,12 @@
                     return require("assets/img/userPhoto.jpg");
                 }
             },
+            userNmae:{
+                type: String,
+                default(){
+                    return '往左8°是魔法的角度 ℡'
+                }
+            }
         },
         methods:{
             error(Error){

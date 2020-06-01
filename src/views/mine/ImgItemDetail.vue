@@ -22,26 +22,30 @@
                     </div>
                 </el-image>
             </div>
+            <comment-p-l></comment-p-l>
         </div>
         <div class="row-small">
-            <user-photo style="display: flex;flex-direction: column;align-items: center">
-                <el-image slot="user-photo"
-                        style="width: 80px; height: 80px"
-                        :src="userPhoto"
-                        @error="error">
-                    <div slot="placeholder" class="image-slot">
-                        <i class="el-icon-loading"></i>加载中
-                    </div>
-                    <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                    </div>
-                </el-image>
-                <div class="user" slot="user-name"><a href="#" class="user-name">{{username}}</a></div>
-            </user-photo>
-            <div class="tab-usr">
-                <button id="tag0"  >{{tabItems[0]}}</button>
-                <button id="tag1" :class="{tag1:isActive}" >{{tabItems[1]}}</button>
-                <button id="tag2" href="" target="_blank">{{tabItems[2]}}</button>
+            <div class="fixed-right">
+                <user-photo style="display: flex;flex-direction: column;align-items: center">
+                    <el-image slot="user-photo"
+                            style="width: 80px; height: 80px"
+                            :src="userPhoto"
+                            @error="error">
+                        <div slot="placeholder" class="image-slot">
+                            <i class="el-icon-loading"></i>加载中
+                        </div>
+                        <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                        </div>
+                    </el-image>
+                    <div class="user" slot="user-name"><a href="#" class="user-name">{{username}}</a></div>
+                </user-photo>
+
+                <div class="tab-usr">
+                    <button :class="{tag0:isActive0}"  @click="changeClass0">{{tabItems[0]}}</button>
+                    <button  :class="{tag1:isActive1}" @click="changeClass1">{{tabItems[1]}}</button>
+                    <button id="tag2" href="" target="_blank">{{tabItems[2]}}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -50,11 +54,13 @@
 <script>
     import TabBarItem from "../../components/tabbar/TabBarItem";
     import UserPhoto from "../../components/userIcon/UserPhoto";
+    import CommentPL from "../../components/conment/CommentPL";
     export default {
         name: "ImgItemDetail",
         components:{
             UserPhoto,
-            TabBarItem
+            TabBarItem,
+            CommentPL,
         },
         data(){
             return{
@@ -66,6 +72,8 @@
                 username:"kotori",
                 tabItems:['收藏',' + 关注','私信'],
                 tabs:['涩图1-1','涩图2-1','涩图3-1','涩图4-1'],
+                isActive0:false,
+                isActive1:false,
             }
         },
         created() {
@@ -76,6 +84,12 @@
             error(Error){
                 console.log(Error);
             },
+            changeClass0(){
+              this.isActive0=!this.isActive0;
+            },
+            changeClass1(){
+              this.isActive1=!this.isActive1;
+            },
         }
     }
 </script>
@@ -83,7 +97,6 @@
 <style scoped>
     .containner{
         display: flex;
-        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         margin-left:15%;
@@ -91,6 +104,22 @@
     }
     .row-big{
         flex:4;
+        align-items: center;
+    }
+    .row-small{
+        width: 300px;
+        position: relative;
+
+    }
+    .fixed-right{
+        position: fixed;
+        top: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+        margin-top: 70px;
+        width: 300px;
     }
     header{
         margin: 0 0 20px;
@@ -108,15 +137,6 @@
         font-size: 14px;
         line-height: 18px;
     }
-    .row-small{
-        flex: 1;
-        position: fixed;
-        right: 250px;
-        top: 192px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     .user{
         padding: 0;
         display: inline-block;
@@ -130,28 +150,28 @@
         color: #366cd9;
         vertical-align: middle;
     }
-    button{
-
+    .tab-usr{
+        width: 225px;
     }
     button{
-        padding: 0;
-        margin: 0;
-        height: 35px;
-        border: 1px solid #dadae0;
-        border-radius: 6px;
-        box-sizing: border-box;
-        text-align: center;
-        cursor: pointer;
-    }
-    #tag1{
         padding: 0 20px;
         background-color:#83cf53;
         color: white;
         text-align: center;
         text-decoration: none;
-        border-radius: 2px;
+        border-color: white;
+        border-radius: 5px;
         height: 26px;
         transition: all .2s ease;
+        cursor: pointer;
+        outline:none;
+    }
+    .tag0{
+        background-color:#D9D9D9;
+    }
+    .tag1{
+
+        background-color:#D9D9D9;
     }
     #tag2{
         padding: 0 20px;

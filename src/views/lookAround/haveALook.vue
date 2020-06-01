@@ -43,7 +43,7 @@
             load () {
                 this.loading = true
                 setTimeout(() => {
-                    this.count += 3
+                    this.count += 6
                     this.loading = false
                 }, 200)
             },

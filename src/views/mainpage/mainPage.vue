@@ -51,12 +51,10 @@
 
 <style scoped>
      .page-main{
-         position: absolute;
-         left: 126px;
-         top: 70px;
          width: 100%;
          overflow: auto;
          overflow-x: hidden;
+         height: 100%;
     }
     .page-container{
         display: flex;
