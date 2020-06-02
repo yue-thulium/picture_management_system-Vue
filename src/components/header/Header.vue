@@ -5,6 +5,17 @@
             <i class="el-icon-menu"></i>
         </div>
         <div class="logo">图片管理系统</div>
+        <div class="search">
+            <div class="input-search">
+                <el-input
+                        v-model="input"
+                        clearable
+                        placeholder="搜索图片内容..."
+                       >
+                    <el-button slot="append" icon="el-icon-search" @click="click"></el-button>
+                </el-input>
+            </div>
+        </div>
         <div class="header-right">
             <div class="header-user-con">
                 <!-- 全屏显示 -->
@@ -24,7 +35,9 @@
                 </div>
                 <!-- 用户头像 -->
                 <div class="user-avator">
+                    <router-link tag="a"  :to="{name:'imgItem-detail',params: { text: 123 },query: { plan: 'private' }}">
                     <img src="~assets/img/userPhoto.jpg" alt="头像">
+                    </router-link>
                 </div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
@@ -54,7 +67,8 @@
                 isShow:false,
                 fullscreen: false,
                 name: "linxin",
-                message: 2
+                message: 2,
+                input:'',
             };
         },
         created() {
@@ -67,6 +81,9 @@
             },
         },
         methods:{
+            click(){
+                console.log(this.input);
+            },
             collapseChage() {
                 this.isShow = !this.isShow;
                 console.log(this.isShow);
@@ -137,6 +154,17 @@
         float: left;
         width: 250px;
         line-height: 70px;
+    }
+    .search{
+        width: 400px;
+        height: 70px;
+        margin-left: 30px;
+        float: left;
+        display: table;
+    }
+    .input-search{
+        display:table-cell;
+        vertical-align:middle;
     }
     .header-right {
         float: right;

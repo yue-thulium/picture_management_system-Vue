@@ -5,16 +5,17 @@
                 <textarea name="notedata" id=""  rows="4" v-model="notedata" class="comment-input"></textarea>
             </div>
         </div>
-        <el-button type="success">成功按钮</el-button>
+        <el-button type="success" style="margin-bottom: 10px">回复</el-button>
         <div  v-infinite-scroll="load"
               :infinite-scroll-disabled="disabled"
               :infinite-scroll-distance="1"
               :infinite-scroll-immediate="false">
            <div class="comment-item" v-for="i in count" :key="i">
-               <user-photo :userPhoto="userPhoto" :userNmae="userName"></user-photo>
-               <div>
-                   <div class="reply-text">123456789</div>
-                   <div class="reply-name"><span>往左8°是魔法的角度 ℡</span></div>
+               <user-photo :userPhoto="userPhoto" >
+                   <a class="user-name" href="#" slot="user-name">往左8°是魔法的角度 ℡</a>
+               </user-photo>
+               <div >
+                   <div class="reply-text"><span style=" padding: 5px 10px;">123456789123456789123456789</span></div>
                </div>
            </div>
         </div>
@@ -36,7 +37,7 @@
             return {
                 notedata:'',
                 userPhoto:require("assets/img/userPhoto.jpg"),
-                userNmae: '往左8°是魔法的角度 ℡',
+                userName: '往左8°是魔法的角度',
                 count: 6,
                 loading: false,
             }
@@ -96,13 +97,25 @@
         font-size: 18px;
         line-height: 18px;
         color: #666;
-    }
-    .reply-name{
-        font-size: 18px;
-        line-height: 18px;
-        color: #666;
+        background-color: white;
+        height: 120px;
+        width: 560px;
+        margin: 15px 0px 10px  40px;
+        overflow: hidden;
+        word-wrap: break-word;
     }
     .reply-name span{
         color: #06F;
+    }
+    .comment-item{
+
+    }
+    .user-name{
+        font-size: 14px;
+        display: inline-block;
+        max-width: 250px;
+        text-decoration: none;
+        color: black;
+        vertical-align: middle;
     }
 </style>

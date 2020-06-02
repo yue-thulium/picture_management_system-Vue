@@ -56,6 +56,6 @@
         font-size: 14px;
         font-weight: 600;
         line-height: 1.4;
-        margin: auto;
+        margin-left: 10px;
     }
 </style>
