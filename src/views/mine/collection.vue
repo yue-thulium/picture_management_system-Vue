@@ -53,10 +53,10 @@
 
 <style scoped>
     .mine-collection{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        position: relative;
         padding: 0;
+        width: 100%;
+        flex: 5;
     }
     .list-item{
         background-color: white;

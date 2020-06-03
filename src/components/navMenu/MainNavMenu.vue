@@ -73,13 +73,9 @@
 
 <style scoped>
     .sideBar{
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 70px;
-        bottom: 0;
+        height: 480px;
+        width: 10%;
         overflow-y: auto;
-        z-index: 999;
     }
     ::-webkit-scrollbar {
         width: 0;

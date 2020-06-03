@@ -5,8 +5,8 @@
          :infinite-scroll-distance="1"
          :infinite-scroll-immediate="false">
         <ul     class="list">
-            <li v-for="i in count" :key="i" class="list-item">
-                <img-item></img-item>
+            <li v-for="(i,index) in count" :key="i" class="list-item">
+                <img-item :pictureList="pictureList[index]"></img-item>
             </li>
         </ul>
         <div>
@@ -27,9 +27,11 @@
             return {
                 count: 6,
                 loading: false,
+                pictureList:[],
             }
         },
         mounted () {
+            this.getPicture(this.count);
         },
         computed: {
             noMore () {
@@ -47,6 +49,12 @@
                     this.loading = false
                 }, 200)
             },
+            getPicture(count){
+              this.getRequest(`/getOnePageAlbum/${count}`).then(res=>{
+                  this.pictureList.push(...res.data.message);
+                  console.log(this.pictureList);
+              })
+            },
         }
     }
 </script>
@@ -54,7 +62,6 @@
 <style scoped>
     .main-square{
         position: relative;
-        margin-left: 210px;
         padding: 0;
         width: 100%;
         flex: 5;
@@ -64,13 +71,14 @@
         height: auto;
         padding: 0 15px;
     }
-    ul{
+    .list{
         height: 100%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         padding: 0;
-        margin: 0;
+        margin: 0 ;
+        overflow-x: auto;
     }
     li{
         list-style:none;

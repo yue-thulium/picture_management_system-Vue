@@ -13,6 +13,7 @@
                    :on-success="handleAvatarSuccess"
                    :on-change="onAvatarChange"
                    :before-upload="beforeAvatarUpload"
+                   :http-request="uploadImg"
         >
             <div><span class="propaganda">图片上传</span></div>
             <img :src="imgUrl" alt="" v-if="imgUrl" class="avatar">
@@ -42,7 +43,7 @@
         data() {
             return {
                 ad_url: '',//上传后的图片或视频URL
-                basepath:'/releaseAtlas',//上传UR
+                basepath:'',//上传UR
                 imgUrl:'',
                 tittle:'',
                 tagList:[],
@@ -56,25 +57,36 @@
             })
         },
         methods: {
-            handleAvatarSuccess(res, file) {
-                console.log(file);
-                console.log(res);
-                console.log('--------------');
+            uploadImg(params){
+                console.log(params.file)
                 console.log(this.imgUrl);
                 this.tags = this.arrayToJson(this.tags);
                 console.log(this.tags)
                 console.log(this.tittle);
-                //下面才是真正的上传文章
-                this.imgUrl = res;
-                console.log('正在上传的url为：'+this.imgUrl);
-                // this.postRequest('/tfrArticle/addArticle', this.formLabelAlign).then(res => {
-                //     const h = this.$createElement;
-                //     this.$notify({
-                //         title: '提示信息',
-                //         message: h('i', {style: 'color: teal'}, '您已成功创建托福文章')
-                //     });
-                // })
+                let formData = new FormData();
+                formData.append("tittle",this.tittle);
+                formData.append("file",params.file);
+                formData.append("tags",this.tags);
+                this.uploadFileRequest('/releaseAtlas',formData).then( res=>{
+                    console.log(res);
+                    if(res.data.code == 200) {
+                        const h = this.$createElement;
+                        this.$notify({
+                            title: '提示信息',
+                            message: h('i', {style: 'color: teal'}, '您已成功发布图片')
+                        });
+                    }
+                    else{
+                        const h = this.$createElement;
+                        this.$notify({
+                            title: '提示信息',
+                            message: h('i', {style: 'color: teal'}, '发布失败，请重新尝试')
+                        });
+                    }
+                })
             },
+            handleAvatarSuccess(res, file){},
+
             beforeAvatarUpload(file) {
                 const isLt2M = file.size / 1024 / 1024 < 10;
                 if (!isLt2M) {
@@ -132,7 +144,7 @@
         align-items: center;
     }
     .el-form-item {
-        width: 1300px;
+        width: 50%;
     }
     .propaganda{
         color:#3c763d;

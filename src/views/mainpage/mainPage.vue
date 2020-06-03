@@ -1,7 +1,7 @@
 <template>
     <div class="page-container" :style="{height:fullHeight+'px'}">
             <Header></Header>
-            <main-nav-menu/>
+            <main-nav-menu />
         <div class="page-main"id="page-main">
             <transition name="move" mode="out-in">
                  <router-view/>
@@ -51,16 +51,14 @@
 
 <style scoped>
      .page-main{
-         width: 100%;
-         overflow: auto;
-         overflow-x: hidden;
+         width: 90%;
          height: 100%;
     }
     .page-container{
         display: flex;
         height: 100%;
-        flex-direction: column;
-        overflow: hidden;
+        flex-wrap: wrap;
+        overflow: auto;
     }
     a, abbr, acronym, address, applet, article, aside, audio, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details,
     dfn, div, dl, dt, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, iframe, img, ins, kbd,

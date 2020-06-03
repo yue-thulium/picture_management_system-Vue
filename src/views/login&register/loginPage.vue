@@ -12,7 +12,7 @@ https://www.jianshu.com/p/8097bb3d9d49
         <div class="video-container">
             <div :style="fixStyle" class="filter"></div>
             <video :style="fixStyle" autoplay loop class="fillWidth" v-on:canplay="canplay">
-                <source src="https://vdept.bdstatic.com/4c324d655a6d69584a394b654e4c6a5a/384b587435394d43/f42eb05193a6f25e831449d9a4143c736d3d16395af6066e5018ed1b6165619e1095a5406998ed594dce914b772d023b.mp4?auth_key=1590161016-0-0-93f437d479fc9b4be1161a917fe1d9b6" type="video/mp4"/>
+                <source src="http://120.27.241.26/group1/M00/00/00/rBDDUl7VB0mAW61jAIeON4MkPK4646.mp4"/>
             </video>
             <div class="poster hidden" v-if="!vedioCanPlay">
                 <img :style="fixStyle" src="http://bpic.588ku.com//back_water_img/19/10/13/10a8fb99ffe3ac40a7e5e1d42415d9d046.jpg!/fw/750/quality/99/unsharp/true/compress/true" alt="">
