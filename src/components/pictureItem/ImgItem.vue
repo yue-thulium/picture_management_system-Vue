@@ -3,7 +3,7 @@
         <div style="display: flex;flex-wrap: wrap">
             <user-photo>
                 <img class="user-photo" :src="'http://120.27.241.26/'+pictureList.icon" alt="用户头像" slot="user-photo">
-                <a class="user-name" href="#" slot="user-name">{{pictureList.username}}</a>
+                <a class="user-name" href="#" slot="user-name">{{pictureList.nick_rname}}</a>
             </user-photo>
             <div class="picture-date">{{picdate}}</div>
         </div>
