@@ -1,18 +1,19 @@
 <template>
-    <div class="containner">
+    <div class="containner" v-if="pictureList">
         <div class="row-big">
             <header>
                 <div class="meta-info">
-                    <span>{{date}}</span>
+                    <span>{{picdate}}</span>
                     <span>{{comment+"条评论"}}</span>
                 </div>
-                <tab-bar-item :tabItems="tabs"/>
+                <tab-bar-item :tabItems="pictureList.tagList"/>
             </header>
             <div class="img-content">
+                <div id="title">{{pictureList.tittle}}</div>
                 <el-image
-                        style="max-width: 960px; max-height: 600px"
-                        :src="url"
-                        :preview-src-list="urlList"
+                        style="max-width: 960px; "
+                        :src="'http://120.27.241.26/'+pictureList.picture"
+                        :preview-src-list="UrlList"
                         @error="error">
                     <div slot="placeholder" class="image-slot">
                         <i class="el-icon-loading"></i>加载中
@@ -29,7 +30,7 @@
                 <user-photo style="display: flex;flex-direction: column;align-items: center">
                     <el-image slot="user-photo"
                             style="width: 80px; height: 80px"
-                            :src="userPhoto"
+                            :src="'http://120.27.241.26/'+pictureList.icon"
                             @error="error">
                         <div slot="placeholder" class="image-slot">
                             <i class="el-icon-loading"></i>加载中
@@ -38,7 +39,7 @@
                             <i class="el-icon-picture-outline"></i>
                         </div>
                     </el-image>
-                    <div class="user" slot="user-name"><a href="#" class="user-name">{{username}}</a></div>
+                    <div class="user" slot="user-name"><a href="#" class="user-name">{{pictureList.nick_name}}</a></div>
                 </user-photo>
 
                 <div class="tab-usr">
@@ -64,23 +65,36 @@
         },
         data(){
             return{
-                url:"http://120.27.241.26/group1/M00/00/00/rBDDUl6RT6uAAmclAARd6OrYEI4579.jpg",
-                urlList:['http://120.27.241.26/group1/M00/00/00/rBDDUl6RT6uAAmclAARd6OrYEI4579.jpg'],
-                userPhoto:require("assets/img/userPhoto.jpg"),
-                date:"2020-5-30",
                 comment:"648",
                 username:"kotori",
                 tabItems:['收藏',' + 关注','私信'],
-                tabs:['涩图1-1','涩图2-1','涩图3-1','涩图4-1'],
                 isActive0:false,
                 isActive1:false,
+                pic_id:0,
+                pictureList:{},
             }
         },
         created() {
-            console.log(this.$route.params.text);
-            console.log(this.$route.query.plan);
+            this.pic_id=this.$route.query.pic_id;
+            this.getpic(this.pic_id);
+        },
+        computed:{
+            picdate() {
+                return this.pictureList.create_time.replace(/\s[\x00-\xff]*/g, '');
+            },
+            UrlList(){
+                let url=[];
+                url.push('http://120.27.241.26/'+this.pictureList.picture);
+                return  url
+            }
         },
         methods:{
+            getpic(pic_id){
+                this.getRequest(`/getAlbumById/${pic_id}`).then(res=>{
+                    this.pictureList = res.data;
+                    console.log(this.pictureList);
+                })
+            },
             error(Error){
                 console.log(Error);
             },

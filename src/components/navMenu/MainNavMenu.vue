@@ -75,6 +75,7 @@
     .sideBar{
         height: 480px;
         width: 10%;
+        min-width: 120px;
         overflow-y: auto;
     }
     ::-webkit-scrollbar {

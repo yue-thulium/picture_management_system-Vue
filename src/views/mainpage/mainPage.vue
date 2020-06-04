@@ -52,6 +52,7 @@
 <style scoped>
      .page-main{
          width: 90%;
+         min-width: 600px;
          height: 100%;
     }
     .page-container{

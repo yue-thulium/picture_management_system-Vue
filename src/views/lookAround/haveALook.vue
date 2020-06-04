@@ -4,11 +4,24 @@
          :infinite-scroll-disabled="disabled"
          :infinite-scroll-distance="1"
          :infinite-scroll-immediate="false">
-        <ul     class="list">
-            <li v-for="(i,index) in count" :key="i" class="list-item">
-                <img-item :pictureList="pictureList[index]"></img-item>
-            </li>
-        </ul>
+        <div style="display: flex;
+            align-items: flex-start;">
+            <ul     class="list">
+                <li v-for="(i,index) in pictureList1.length" :key="index" class="list-item">
+                    <img-item :pictureList="pictureList1[index]"></img-item>
+                </li>
+            </ul>
+            <ul     class="list">
+                <li v-for="(i,index) in pictureList2.length" :key="index" class="list-item">
+                    <img-item :pictureList="pictureList2[index]"></img-item>
+                </li>
+            </ul>
+            <ul     class="list">
+                <li v-for="(i,index) in pictureList3.length" :key="index" class="list-item">
+                    <img-item :pictureList="pictureList3[index]"></img-item>
+                </li>
+            </ul>
+        </div>
         <div>
             <p v-if="loading">加载中...</p>
             <p v-if="noMore">没有更多了</p>
@@ -27,7 +40,9 @@
             return {
                 count: 6,
                 loading: false,
-                pictureList:[],
+                pictureList1:[],
+                pictureList2:[],
+                pictureList3:[],
             }
         },
         mounted () {
@@ -51,8 +66,9 @@
             },
             getPicture(count){
               this.getRequest(`/getOnePageAlbum/${count}`).then(res=>{
-                  this.pictureList.push(...res.data.message);
-                  console.log(this.pictureList);
+                  this.pictureList1.push(...res.data.message.slice(0,res.data.message.length/3));
+                  this.pictureList2.push(...res.data.message.slice(res.data.message.length/3,2*res.data.message.length/3));
+                  this.pictureList3.push(...res.data.message.slice(2*res.data.message.length/3));
               })
             },
         }
@@ -65,6 +81,9 @@
         padding: 0;
         width: 100%;
         flex: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .list-item{
         background-color: white;
@@ -73,16 +92,14 @@
     }
     .list{
         height: 100%;
-        display: flex;
-        flex-wrap: wrap;
+        display: block;
         align-items: center;
         padding: 0;
         margin: 0 ;
         overflow-x: auto;
     }
-    li{
+    .list-item{
         list-style:none;
         margin: 10px;
-
     }
 </style>
