@@ -82,6 +82,14 @@ const commonRouter = {
                 title: '历史记录'
             }
         },
+        {
+            path: 'userSetting',
+            name: 'UserSetting',
+            component: ()=>import('@/views/userSetting/UserSetting'),
+            meta:{
+                title:'用户设置'
+            }
+        }
     ]
 };
 

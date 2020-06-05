@@ -9,7 +9,10 @@
                       auto-complete="off" placeholder="密码"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" style="width: 300px" v-loading="loading" @click.native.prevent="submitClick">登录</el-button>
+            <div class="button-div">
+                <el-button type="primary" style="width: 130px" v-loading="loading" @click.native.prevent="submitClick">登录</el-button>
+                <el-button type="primary" style="width: 130px" v-loading="loading" @click.native.prevent="registerClick">注册</el-button>
+            </div>
         </el-form-item>
     </el-form>
 </template>
@@ -51,10 +54,17 @@
                     }
                 });
             },
+            registerClick(){
+                console.log(123)
+                this.$router.push('/registerPage');
+            },
         }
     }
 </script>
 
 <style scoped>
-
+.button-div{
+    display: flex;
+    flex-wrap: wrap;
+}
 </style>

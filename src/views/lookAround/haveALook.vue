@@ -2,7 +2,7 @@
     <div class="main-square"
          v-infinite-scroll="load"
          :infinite-scroll-disabled="disabled"
-         :infinite-scroll-distance="1"
+         :infinite-scroll-distance="20"
          :infinite-scroll-immediate="false"
          infinite-scroll-immediate>
         <div style="display: flex;

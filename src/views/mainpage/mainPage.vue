@@ -36,7 +36,7 @@
             }
         },
         created(){
-            this.socketApi.initWebSocket(this.$store.getters.username);
+            // this.socketApi.initWebSocket(this.$store.getters.username);
         },
         mounted () {
             const that = this

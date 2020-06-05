@@ -46,7 +46,7 @@
             <i class="el-icon-caret-bottom"></i>
           </span>
                     <el-dropdown-menu slot="dropdown">
-                        <router-link to="">
+                        <router-link :to="{name:'UserSetting'}">
                             <el-dropdown-item>用户信息</el-dropdown-item>
                         </router-link>
                         <el-dropdown-item command="user">修改密码</el-dropdown-item>
@@ -66,7 +66,7 @@
             return{
                 isShow:false,
                 fullscreen: false,
-                name: "linxin",
+                name: "kotori",
                 message: 2,
                 input:'',
             };
@@ -76,7 +76,7 @@
         },
         computed:{
             username() {
-                let username ='kotori';
+                let username = this.$store.getters.username;
                 return username ? username : this.name;
             },
         },
@@ -91,8 +91,9 @@
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if (command == "loginout") {
-                    localStorage.removeItem("ms_username");
-                    this.$router.push("");
+                    // this.socketApi.websocketclose();
+                    this.$store.dispatch('user/logout');
+                    this.$router.replace('/loginPage');
                 }else if(command =="user"){
                     this.$store.dispatch('')
                 }
