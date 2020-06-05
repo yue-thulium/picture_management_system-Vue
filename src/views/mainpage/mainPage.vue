@@ -35,6 +35,9 @@
                 }
             }
         },
+        created(){
+            this.socketApi.initWebSocket(this.$store.getters.username);
+        },
         mounted () {
             const that = this
             window.onresize = () => {
@@ -42,6 +45,9 @@
                     window.fullHeight = document.documentElement.clientHeight
                     that.fullHeight = window.fullHeight
                 })()
+            },
+            window.onbeforeunload = function() {
+                this.socketApi.websocketclose()
             }
         },
         methods: {
