@@ -86,7 +86,6 @@
             },
             collapseChage() {
                 this.isShow = !this.isShow;
-                console.log(this.isShow);
                 this.$store.dispatch("controlSidebar/showCollapse",this.isShow);
             },
             // 用户名下拉菜单选择事件

@@ -77,6 +77,7 @@
         created() {
             this.pic_id=this.$route.query.pic_id;
             this.getpic(this.pic_id);
+            this.iscollect_pic();
         },
         computed:{
             picdate() {
@@ -93,10 +94,22 @@
                 this.getRequest(`/getAlbumById/${pic_id}`).then(res=>{
                     this.pictureList = res.data;
                     console.log(this.pictureList);
+
                 })
             },
             error(Error){
                 console.log(Error);
+            },
+            iscollect_pic(){
+              this.getRequest(`/ifCollectionAlbum/${this.pic_id}`).then(res=>{
+                  console.log(res);
+                  if(res.data.code==20011){
+                      this.isActive0=true;
+                  }
+                  else if(res.data.code==200){
+                      this.isActive0=false;
+                  }
+              })
             },
             collect_pic(){
               this.isActive0=!this.isActive0;

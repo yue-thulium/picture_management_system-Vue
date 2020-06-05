@@ -51,7 +51,7 @@
         },
         computed: {
             noMore () {
-                return this.count >= 18
+                return this.count >= 30
             },
             disabled () {
                 return this.loading || this.noMore
@@ -68,7 +68,6 @@
             },
             getPicture(count){
               this.getRequest(`/getOnePageAlbum/${count}`).then(res=>{
-                  console.log(res.data);
                   this.pictureList1.push(...res.data.message.slice(0,res.data.message.length/3));
                   this.pictureList2.push(...res.data.message.slice(res.data.message.length/3,2*res.data.message.length/3));
                   this.pictureList3.push(...res.data.message.slice(2*res.data.message.length/3));

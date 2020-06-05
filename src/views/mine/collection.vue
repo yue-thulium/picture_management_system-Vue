@@ -45,6 +45,9 @@
                 pictureList3:[],
             }
         },
+        created() {
+            this.getCollection(this.count);
+        },
         mounted () {
         },
         computed: {
@@ -59,10 +62,20 @@
             load () {
                 this.loading = true
                 setTimeout(() => {
-                    this.count += 3
+                    this.count += 6
                     this.loading = false
                 }, 200)
             },
+            getCollection(count){
+                this.getRequest(`/getCollectAlbum/${count}`).then(res=>{
+                    this.pictureList1.push(...res.data.slice(0,res.data.length/3));
+                    this.pictureList2.push(...res.data.slice(res.data.length/3,2*res.data.length/3));
+                    this.pictureList3.push(...res.data.slice(2*res.data.length/3));
+                    console.log(this.pictureList1);
+                    console.log(this.pictureList2);
+                    console.log(this.pictureList3);
+                })
+            }
         }
     }
 </script>
