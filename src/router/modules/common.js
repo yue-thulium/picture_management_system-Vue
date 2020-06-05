@@ -88,8 +88,33 @@ const commonRouter = {
             component: ()=>import('@/views/userSetting/UserSetting'),
             meta:{
                 title:'用户设置'
-            }
-        }
+            },
+
+        },
+        {
+            path:'baseinf',
+            name: 'baseinf',
+            component: ()=>import('@/views/userSetting/baseinf'),
+            meta:{
+                title:'基本信息'
+            },
+        },
+        {
+            path:'iconconfig',
+            name: 'iconconfig',
+            component: ()=>import('@/views/userSetting/iconconfig'),
+            meta:{
+                title:'头像设置'
+            },
+        },
+        {
+            path:'passwordconfig',
+            name: 'passwordconfig',
+            component: ()=>import('@/views/userSetting/passwordconfig'),
+            meta:{
+                title:'修改密码'
+            },
+        },
     ]
 };
 

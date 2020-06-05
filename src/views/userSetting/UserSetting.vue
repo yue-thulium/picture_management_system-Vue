@@ -1,10 +1,14 @@
 <template>
-    <div>123</div>
+   <div>123</div>
 </template>
 
 <script>
+    import baseinf from "./baseinf";
     export default {
-        name: "UserSetting"
+        name: "UserSetting",
+        components:{
+            baseinf,
+        },
     }
 </script>
 

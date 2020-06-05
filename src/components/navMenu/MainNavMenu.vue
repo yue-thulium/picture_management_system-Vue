@@ -37,7 +37,10 @@
                 <el-submenu index="4">
                     <i class="el-icon-setting" slot="title"></i>
                     <span slot="title">设置</span>
-                    <el-menu-item index="4-1">设置一些东西</el-menu-item>
+                    <el-menu-item index="userSetting">设置一些东西</el-menu-item>
+                    <el-menu-item index="baseinf">基本信息</el-menu-item>
+                    <el-menu-item index="iconconfig">头像设置</el-menu-item>
+                    <el-menu-item index="passwordconfig">修改密码</el-menu-item>
                 </el-submenu>
             </el-menu>
         </el-col>

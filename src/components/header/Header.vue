@@ -95,7 +95,7 @@
                     this.$store.dispatch('user/logout');
                     this.$router.replace('/loginPage');
                 }else if(command =="user"){
-                    this.$store.dispatch('')
+                    this.$router.replace('/mainPage/passwordconfig');
                 }
             },
             // 全屏事件

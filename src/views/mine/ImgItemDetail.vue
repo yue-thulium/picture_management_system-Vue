@@ -93,8 +93,6 @@
             getpic(pic_id){
                 this.getRequest(`/getAlbumById/${pic_id}`).then(res=>{
                     this.pictureList = res.data;
-                    console.log(this.pictureList);
-
                 })
             },
             error(Error){
@@ -102,7 +100,6 @@
             },
             iscollect_pic(){
               this.getRequest(`/ifCollectionAlbum/${this.pic_id}`).then(res=>{
-                  console.log(res);
                   if(res.data.code==20011){
                       this.isActive0=true;
                   }
@@ -146,8 +143,39 @@
                   });
               }
             },
-            concern_author(){
-              this.isActive1=!this.isActive1;
+            concern_author() {
+                this.isActive1 = !this.isActive1;
+                if (this.isActive1) {
+                    this.getRequest(`/setFollows/${this.pictureList.username}`).then(res => {
+                        if (res.data.code == 200) {
+                            this.$message({
+                                type: 'success',
+                                message: '关注成功 '
+                            });
+                        } else {
+                            this.$message({
+                                type: 'error',
+                                message: '网络有波动 ，稍微再试试吧'
+                            });
+                        }
+                    });
+                }
+                else {
+                    this.getRequest(`/dropFollows/${this.pictureList.username}`).then(res => {
+                        if(res.data.code==200){
+                            this.$message({
+                                type: 'success',
+                                message: '取消关注   '
+                            });
+                        }
+                        else{
+                            this.$message({
+                                type: 'error',
+                                message: '网络有波动 ，稍微再试试吧'
+                            });
+                        }
+                    });
+                }
             },
             sendMessage(){
                 this.$prompt('在这里输入你想对ta说的话', '私信❤', {
