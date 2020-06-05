@@ -5,17 +5,21 @@
                 <textarea name="notedata" id=""  rows="4" v-model="notedata" class="comment-input"></textarea>
             </div>
         </div>
-        <el-button type="success" style="margin-bottom: 10px">回复</el-button>
+        <el-button type="success" style="margin-bottom: 10px" @click="putComment">回复</el-button>
         <div  v-infinite-scroll="load"
               :infinite-scroll-disabled="disabled"
               :infinite-scroll-distance="1"
-              :infinite-scroll-immediate="false">
-           <div class="comment-item" v-for="i in count" :key="i">
-               <user-photo :userPhoto="userPhoto" >
-                   <a class="user-name" href="#" slot="user-name">往左8°是魔法的角度 ℡</a>
-               </user-photo>
+              :infinite-scroll-immediate="false"
+                v-if="commentList">
+           <div class="comment-item" v-for="(item,index) in commentList" :key="index">
+               <div style="display:flex;flex-wrap: wrap">
+                   <user-photo :userPhoto="'http://120.27.241.26/'+item.icon" >
+                       <a class="user-name" href="#" slot="user-name">{{item.username}}</a>
+                   </user-photo>
+                   <span style="margin: 0 auto;">{{item.comment_time}}</span>
+               </div>
                <div >
-                   <div class="reply-text"><span style=" padding: 5px 10px;">123456789123456789123456789</span></div>
+                   <div class="reply-text"><span style=" padding: 5px 10px;">{{item.content}}</span></div>
                </div>
            </div>
         </div>
@@ -36,11 +40,16 @@
         data(){
             return {
                 notedata:'',
-                userPhoto:require("assets/img/userPhoto.jpg"),
-                userName: '往左8°是魔法的角度',
                 count: 6,
                 loading: false,
+                commentList:[],
             }
+        },
+        created() {
+            this.getComment();
+        },
+        props:{
+          pic_id:Number,
         },
         computed: {
             noMore () {
@@ -57,6 +66,30 @@
                     this.count += 6
                     this.loading = false
                 }, 200)
+            },
+            putComment(){
+                this.postRequest('/addAlbumComment',{pa_id:this.pic_id,content:this.notedata}).then(res=>{
+                    if(res.data.code==200){
+                        const h = this.$createElement;
+                        this.$notify({
+                            title: '提示信息',
+                            message: h('i', {style: 'color: teal'}, '回复成功')
+                        });
+                        this.$emit('foreupdate');
+                    }
+                    else {
+                        const h = this.$createElement;
+                        this.$notify({
+                            title: '提示信息',
+                            message: h('i', {style: 'color: teal'}, '回复失败')
+                        });
+                    }
+                })
+            },
+            getComment(){
+              this.getRequest(`/getAllAlbumComment/${this.pic_id}`).then(res=>{
+                  this.commentList=res.data;
+              })
             },
         }
     }

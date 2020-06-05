@@ -4,11 +4,24 @@
          :infinite-scroll-disabled="disabled"
          :infinite-scroll-distance="1"
          :infinite-scroll-immediate="false">
-        <ul     class="list">
-            <li v-for="i in count" :key="i" class="list-item">
-                <img-item></img-item>
-            </li>
-        </ul>
+        <div style="display: flex;
+            align-items: flex-start;">
+            <ul     class="list">
+                <li v-for="(i,index) in pictureList1.length" :key="index" class="list-item">
+                    <img-item :pictureList="pictureList1[index]"></img-item>
+                </li>
+            </ul>
+            <ul     class="list">
+                <li v-for="(i,index) in pictureList2.length" :key="index" class="list-item">
+                    <img-item :pictureList="pictureList2[index]"></img-item>
+                </li>
+            </ul>
+            <ul     class="list">
+                <li v-for="(i,index) in pictureList3.length" :key="index" class="list-item">
+                    <img-item :pictureList="pictureList3[index]"></img-item>
+                </li>
+            </ul>
+        </div>
         <div>
             <p v-if="loading">加载中...</p>
             <p v-if="noMore">没有更多了</p>
@@ -27,6 +40,9 @@
             return {
                 count: 6,
                 loading: false,
+                pictureList1:[],
+                pictureList2:[],
+                pictureList3:[],
             }
         },
         mounted () {

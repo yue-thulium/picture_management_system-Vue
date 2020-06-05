@@ -11,7 +11,7 @@
             <picture-article>
                 <keep-alive></keep-alive>
                 <router-link tag="a" slot="text" class="picture-text"
-                             :to="{name:'imgItem-detail',query: { pic_id: pictureList.id }}"
+                             :to="{name:'imgItem-detail',params:{text:pictureList.tittle},query: { pic_id: pictureList.id }}"
                 >
                 {{pictureList.tittle}}
                 </router-link>

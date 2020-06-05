@@ -23,7 +23,7 @@
                     </div>
                 </el-image>
             </div>
-            <comment-p-l></comment-p-l>
+            <comment-p-l :pic_id="pictureList.id" @foreupdate="foreupdate" ref="cpl" ></comment-p-l>
         </div>
         <div class="row-small">
             <div class="fixed-right">
@@ -43,9 +43,9 @@
                 </user-photo>
 
                 <div class="tab-usr">
-                    <button :class="{tag0:isActive0}"  @click="changeClass0">{{tabItems[0]}}</button>
-                    <button  :class="{tag1:isActive1}" @click="changeClass1">{{tabItems[1]}}</button>
-                    <button id="tag2" href="" target="_blank">{{tabItems[2]}}</button>
+                    <button :class="{tag0:isActive0}"  @click="collect_pic">{{tabItems[0]}}</button>
+                    <button  :class="{tag1:isActive1}" @click="concern_author">{{tabItems[1]}}</button>
+                    <button id="tag2" href="" target="_blank" @click="sendMessage">{{tabItems[2]}}</button>
                 </div>
             </div>
         </div>
@@ -98,12 +98,77 @@
             error(Error){
                 console.log(Error);
             },
-            changeClass0(){
+            collect_pic(){
               this.isActive0=!this.isActive0;
+              if(this.isActive0) {
+                  this.getRequest(`/collectionAlbum/${this.pic_id}`).then(res => {
+                      if(res.data.code==200){
+                          this.$message({
+                              type: 'success',
+                              message: '收藏成功 '
+                          });
+                      }
+                      else{
+                          this.$message({
+                              type: 'error',
+                              message: '网络有波动 ，稍微再试试吧'
+                          });
+                      }
+                  });
+              }
+              else {
+                  this.getRequest(`/enCollectionAlbum/${this.pic_id}`).then(res => {
+                      if(res.data.code==200){
+                          this.$message({
+                              type: 'success',
+                              message: '取消收藏 '
+                          });
+                      }
+                      else{
+                          this.$message({
+                              type: 'error',
+                              message: '网络有波动 ，稍微再试试吧'
+                          });
+                      }
+                  });
+              }
             },
-            changeClass1(){
+            concern_author(){
               this.isActive1=!this.isActive1;
             },
+            sendMessage(){
+                this.$prompt('在这里输入你想对ta说的话', '私信❤', {
+                    confirmButtonText: '发送~',
+                    cancelButtonText: '还是算了吧~',
+                    inputType:'textarea',
+                }).then(({ value }) => {
+                    this.postRequest('/sendMess',{message:value,message_to:this.pictureList.pm_id}).then(res=>{
+                        console.log(res);
+                        if(res.data.code==200){
+                            this.$message({
+                                type: 'success',
+                                message: '私信成功 '
+                            });
+                        }
+                        else{
+                            this.$message({
+                                type: 'error',
+                                message: '发送失败成功 ，稍微再试试吧'
+                            });
+                        }
+                    })
+
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
+                });
+            },
+            foreupdate(){
+                this.$refs.cpl.getComment();
+                this.$refs.cpl.$forceUpdate();
+            }
         }
     }
 </script>

@@ -3,7 +3,8 @@
          v-infinite-scroll="load"
          :infinite-scroll-disabled="disabled"
          :infinite-scroll-distance="1"
-         :infinite-scroll-immediate="false">
+         :infinite-scroll-immediate="false"
+         infinite-scroll-immediate>
         <div style="display: flex;
             align-items: flex-start;">
             <ul     class="list">
@@ -46,7 +47,7 @@
             }
         },
         mounted () {
-            this.getPicture(this.count);
+             this.getPicture(this.count);
         },
         computed: {
             noMore () {
@@ -62,10 +63,12 @@
                 setTimeout(() => {
                     this.count += 6
                     this.loading = false
+                    this.getPicture(this.count);
                 }, 200)
             },
             getPicture(count){
               this.getRequest(`/getOnePageAlbum/${count}`).then(res=>{
+                  console.log(res.data);
                   this.pictureList1.push(...res.data.message.slice(0,res.data.message.length/3));
                   this.pictureList2.push(...res.data.message.slice(res.data.message.length/3,2*res.data.message.length/3));
                   this.pictureList3.push(...res.data.message.slice(2*res.data.message.length/3));
