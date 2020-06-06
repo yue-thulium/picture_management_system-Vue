@@ -26,12 +26,12 @@
                 </div>
                 <!-- 消息中心 -->
                 <div class="btn-bell">
-                    <el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
+                    <el-tooltip effect="dark" :content="$store.state.controlSidebar.messageCount?`有${$store.state.controlSidebar.messageCount}条未读消息`:`消息中心`" placement="bottom">
                         <router-link to="/mainPage/mine-personalMessage">
                             <i class="el-icon-bell"></i>
                         </router-link>
                     </el-tooltip>
-                    <span class="btn-bell-badge" v-if="message"></span>
+                    <span class="btn-bell-badge" v-if="$store.state.controlSidebar.messageCount"></span>
                 </div>
                 <!-- 用户头像 -->
                 <div class="user-avator">
@@ -67,12 +67,12 @@
                 isShow:false,
                 fullscreen: false,
                 name: "kotori",
-                message: 2,
                 input:'',
             };
         },
         created() {
             this.$store.dispatch("controlSidebar/showCollapse",this.isShow);
+            this.getMessageCount();
         },
         computed:{
             username() {
@@ -81,6 +81,11 @@
             },
         },
         methods:{
+            getMessageCount(){
+              this.getRequest('/getCountMessNeedRead').then(res=>{
+                  this.$store.dispatch("controlSidebar/MCount",res.data.message);
+              })
+            },
             click(){
                 console.log(this.input);
             },

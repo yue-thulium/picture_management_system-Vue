@@ -8,8 +8,8 @@
         <el-button type="success" style="margin-bottom: 10px" @click="putComment">回复</el-button>
         <div  v-infinite-scroll="load"
               :infinite-scroll-disabled="disabled"
-              :infinite-scroll-distance="1"
-              :infinite-scroll-immediate="false"
+              :infinite-scroll-distance="10"
+              :infinite-scroll-immediate="true"
                 v-if="commentList">
            <div class="comment-item" v-for="(item,index) in commentList" :key="index">
                <div style="display:flex;flex-wrap: wrap">
@@ -40,9 +40,10 @@
         data(){
             return {
                 notedata:'',
-                count: 6,
+                count: 0,
                 loading: false,
                 commentList:[],
+                num:0,
             }
         },
         created() {
@@ -61,10 +62,12 @@
         },
         methods:{
             load () {
+                console.log(++this.num);
                 this.loading = true
                 setTimeout(() => {
                     this.count += 6
                     this.loading = false
+                    this.getComment();
                 }, 200)
             },
             putComment(){
@@ -87,10 +90,17 @@
                 })
             },
             getComment(){
-              this.getRequest(`/getAllAlbumComment/${this.pic_id}`).then(res=>{
-                  this.commentList=res.data;
+                console.log(this.count);
+                this.getRequest(`/getAllAlbumComment/${this.pic_id}/${this.count}`).then(res=>{
+                  this.commentList.push(...res.data);
               })
             },
+            getCommentFlash(){
+                this.getRequest(`/getAllAlbumComment/${this.pic_id}/${this.count}`).then(res=>{
+                    this.commentList=res.data;
+                    console.log(res.data);
+                })
+            }
         }
     }
 </script>

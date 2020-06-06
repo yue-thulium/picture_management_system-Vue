@@ -11,9 +11,7 @@ import {postRequest} from './utils/axiousApi'
 import {uploadFileRequest} from './utils/axiousApi'
 import {getToken} from "@/utils/auth";
 import VueParticles from 'vue-particles'
-import * as socketApi from './utils/webSocket'
 
-Vue.prototype.socketApi = socketApi;
 
 Vue.use(Element)
 Vue.use(VueParticles)

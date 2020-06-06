@@ -93,6 +93,7 @@
             getpic(pic_id){
                 this.getRequest(`/getAlbumById/${pic_id}`).then(res=>{
                     this.pictureList = res.data;
+                    console.log(res.data)
                 })
             },
             error(Error){
@@ -207,7 +208,7 @@
                 });
             },
             foreupdate(){
-                this.$refs.cpl.getComment();
+                this.$refs.cpl.getCommentFlash();
                 this.$refs.cpl.$forceUpdate();
             }
         }

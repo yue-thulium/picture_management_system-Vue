@@ -35,8 +35,11 @@
                 }
             }
         },
-        created(){
-            // this.socketApi.initWebSocket(this.$store.getters.username);
+        created() {
+            this.initWebSocket();
+        },
+        destroyed() {
+            this.websock.close();//离开路由之后断开websocket连接
         },
         mounted () {
             const that = this
@@ -45,13 +48,43 @@
                     window.fullHeight = document.documentElement.clientHeight
                     that.fullHeight = window.fullHeight
                 })()
-            },
-            window.onbeforeunload = function() {
-                this.socketApi.websocketclose()
             }
         },
         methods: {
-        }
+            initWebSocket(){//初始化weosocket(必须)
+                const wsuri = 'ws://localhost:8082/websocket/'+ this.$store.getters.username;    //请根据实际项目需要进行修改
+                this.websock = new WebSocket(wsuri);      //新建一个webstock对象
+                this.websock.onmessage = this.websocketonmessage;
+                this.websock.onopen = this.websocketonopen;
+                this.websock.onerror = this.websocketonerror;
+                this.websock.onclose = this.websocketclose;
+            },
+            websocketonopen(){//websocket连接后发送数据(send发送)
+                console.log('初步建立连接');
+                let actions = {message:'老子来了'};     //请根据实际项目需要进行修改
+                this.websocketsend(JSON.stringify(actions));
+            },
+            websocketonerror(e){//连接建立失败重连
+                that.$notify({
+                    title: '错误',
+                    message: '服务器错误，无法接收实时报警信息',
+                    type: 'error',
+                    duration: 0
+                });
+                this.initWebSocket();
+            },
+            websocketonmessage(e){ //数据接收
+               if(e.data){
+                   this.$store.dispatch("controlSidebar/MCountplus");
+               }
+            },
+            websocketsend(Data){//数据发送
+                this.websock.send(Data);
+            },
+            websocketclose(e){  //关闭
+                console.log('断开连接',e);
+            },
+        },
     }
 </script>
 

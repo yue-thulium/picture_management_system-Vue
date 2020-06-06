@@ -47,7 +47,7 @@
             }
         },
         mounted () {
-             this.getPicture(this.count);
+            this.getPicture(this.count);
         },
         computed: {
             noMore () {
