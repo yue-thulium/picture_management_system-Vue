@@ -13,7 +13,7 @@
                 </el-upload>
             </div>
             <div class="userTXPic">
-                <div class="userTXPicText">仅支持JPG、PNG格式且文件小于5M</div>
+                <div class="userTXPicText">仅支持JPG、PNG格式且文件小于2M</div>
                 <div style="width:240px; height:240px;"><img style="width:240px; height:240px;" :src="imgPath"></div>
             </div>
             <div class="userTXShow">
@@ -71,11 +71,11 @@
                 }
                 let file = new FormData();
                 //filename是键，file是值，就是要传的文件，test.zip是要传的文件名
-                file.append('file', this.files, this.fileName);
+                file.append('icon', this.files, this.fileName);
                 this.uploadFileRequest('/changeIcon',file).then(resp => {
                     if (resp.data.code === 200) {
                         this.$message.success(resp.data.message);
-                        this.$router.push('/person/personal_data/base');
+                        this.$router.replace('/mainPage/showSquare')
                     } else {
                         this.$message.error(resp.data.message);
                     }

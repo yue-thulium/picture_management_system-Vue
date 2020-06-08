@@ -1,44 +1,52 @@
 <template>
     <div class="mine-fans">
-        <div class="test">
-            <ul >
-                <li v-for="i in count.slice(0,count.length/3)">
-                    <h2 >我的粉丝{{i}}</h2>
-                </li>
-            </ul>
-            <ul >
-                <li v-for="i in count.slice(count.length/3,2*count.length/3)">
-                    <h2 >我的粉丝{{i}}</h2>
-                </li>
-            </ul>
-            <ul >
-                <li v-for="i in count.slice(2*count.length/3)">
-                    <h2 >我的粉丝{{i}}</h2>
-                </li>
-            </ul>
-        </div>
-
+        <el-table
+                :data="tableData"
+                style="width: 100%"
+                highlight-current-row
+        >
+            <el-table-column
+                    label="用户"
+                    width="180">
+                <template slot-scope="scope">
+                    <img :src="'http://120.27.241.26/'+scope.row.icon" alt="" style="width: 80px;height:80px;">
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="nick_name"
+                    label="昵称"
+                    width="180">
+            </el-table-column>
+        </el-table>
     </div>
 </template>
 
 <script>
     export default {
         name: "fans",
-        data(){
-            return{
-                count:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],
-            }
+        created() {
+            this.getFollows();
         },
+        methods: {
+            getFollows(){
+                this.getRequest('/getFans').then(res=>{
+                    this.tableData=res.data;
+                    console.log(res);
+                })
+            },
+        },
+        data() {
+            return {
+                tableData: [],
+            }
+        }
 
     }
 </script>
 
 <style scoped>
     .mine-fans{
-        z-index: 999;
+       margin: 0 auto;
     }
-    .test{
-        display: flex;
-        flex-wrap: wrap;
-    }
+
 </style>

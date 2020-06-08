@@ -62,7 +62,6 @@
         },
         methods:{
             load () {
-                console.log(++this.num);
                 this.loading = true
                 setTimeout(() => {
                     this.count += 6
@@ -90,7 +89,6 @@
                 })
             },
             getComment(){
-                console.log(this.count);
                 this.getRequest(`/getAllAlbumComment/${this.pic_id}/${this.count}`).then(res=>{
                   this.commentList.push(...res.data);
               })
@@ -98,7 +96,6 @@
             getCommentFlash(){
                 this.getRequest(`/getAllAlbumComment/${this.pic_id}/${this.count}`).then(res=>{
                     this.commentList=res.data;
-                    console.log(res.data);
                 })
             }
         }

@@ -36,7 +36,7 @@
                 <!-- 用户头像 -->
                 <div class="user-avator">
                     <router-link tag="a"  :to="{name:'imgItem-detail',params: { text: 123 },query: { plan: 'private' }}">
-                    <img src="~assets/img/userPhoto.jpg" alt="头像">
+                    <img :src="icno" alt="头像">
                     </router-link>
                 </div>
                 <!-- 用户名下拉菜单 -->
@@ -68,11 +68,13 @@
                 fullscreen: false,
                 name: "kotori",
                 input:'',
+                icno:'http://120.27.241.26/',
             };
         },
         created() {
             this.$store.dispatch("controlSidebar/showCollapse",this.isShow);
             this.getMessageCount();
+            this.getIcon();
         },
         computed:{
             username() {
@@ -81,6 +83,11 @@
             },
         },
         methods:{
+            getIcon(){
+                this.getRequest('/getIcon').then(res=>{
+                    this.icno+=res.data;
+                })
+            },
             getMessageCount(){
               this.getRequest('/getCountMessNeedRead').then(res=>{
                   this.$store.dispatch("controlSidebar/MCount",res.data.message);

@@ -93,8 +93,13 @@
             getpic(pic_id){
                 this.getRequest(`/getAlbumById/${pic_id}`).then(res=>{
                     this.pictureList = res.data;
-                    console.log(res.data)
+                    this.isFollow(this.pictureList.username);
                 })
+            },
+            isFollow(username){
+              this.getRequest(`/ifFollows/${username}`).then(res=>{
+                  this.isActive1 = !this.isActive1;
+              })
             },
             error(Error){
                 console.log(Error);

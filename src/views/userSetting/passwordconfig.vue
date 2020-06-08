@@ -58,10 +58,11 @@
                 this.$refs.passwordInfFrom.validate(valid => {
                     if (valid){
                         this.isLaoding = true;
-                        this.postRequest('/changePass',{
-                            'oldpass' : this.passwordInf.oldpass,
-                            'newpass' : this.passwordInf.newpass
+                        this.postRequest('/updatePassword',{
+                            'oldPass' : this.passwordInf.oldpass,
+                            'newPass' : this.passwordInf.newpass
                         }).then(resp => {
+                            console.log(resp);
                             this.isLaoding = false;
                             if (resp.data.code === 200) {
                                 this.$message.success(resp.data.message)
