@@ -38,6 +38,8 @@
         },
         data () {
             return {
+                tag_name:'',
+                tagList:[],
                 count: 6,
                 loading: false,
                 pictureList1:[],
@@ -45,8 +47,32 @@
                 pictureList3:[],
             }
         },
-        mounted () {
-            this.getPicture(this.count);
+        created () {
+            if(this.$route.query.tag!=null) {
+                this.tag_name = this.$route.query.tag;
+                this.tagList=[];
+                this.tagList.push(this.$route.params.tagList);
+                console.log(this.tagList);
+                this.getPicSearch();
+            }
+            else{
+                this.getPicture(this.count);
+            }
+        },
+        watch: {
+            $route (to, from) {
+                if(to.query.tag){
+                    this.tag_name = this.$route.query.tag;
+                    this.tagList.push(this.$route.params.tagList);
+                    console.log(this.tagList);
+                    this.pictureList1.splice(0);
+                    this.pictureList2.splice(0);
+                    this.pictureList3.splice(0);
+                    this.getPicSearch();
+                }
+                console.log(to)
+                console.log(from)
+            }
         },
         computed: {
             noMore () {
@@ -62,7 +88,12 @@
                 setTimeout(() => {
                     this.count += 6
                     this.loading = false
-                    this.getPicture(this.count);
+                    if(this.tagList.length!=0){
+                        this.getPicSearch();
+                    }
+                    else{
+                        this.getPicture(this.count);
+                    }
                 }, 200)
             },
             getPicture(count){
@@ -71,6 +102,16 @@
                   this.pictureList2.push(...res.data.message.slice(res.data.message.length/3,2*res.data.message.length/3));
                   this.pictureList3.push(...res.data.message.slice(2*res.data.message.length/3));
               })
+            },
+            getPicSearch(){
+                this.postRequest('/getAlbumByTags', {tags: JSON.stringify(this.tagList),pageNumber:this.count}).then(res => {
+                    this.pictureList1.push(...res.data.slice(0,res.data.length/3));
+                    this.pictureList2.push(...res.data.slice(res.data.length/3,2*res.data.length/3));
+                    this.pictureList3.push(...res.data.slice(2*res.data.length/3));
+                })
+            },
+            arrayToJson(arr){
+                return JSON.stringify(arr)
             },
         }
     }
@@ -97,7 +138,7 @@
         align-items: center;
         padding: 0;
         margin: 0 ;
-        overflow-x: auto;
+        overflow: hidden;
     }
     .list-item{
         list-style:none;

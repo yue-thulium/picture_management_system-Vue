@@ -7,13 +7,15 @@
         <div class="logo">图片管理系统</div>
         <div class="search">
             <div class="input-search">
-                <el-input
-                        v-model="input"
-                        clearable
-                        placeholder="搜索图片内容..."
-                       >
+                <el-autocomplete
+                        class="inline-input"
+                        v-model="state1"
+                        :fetch-suggestions="querySearch"
+                        placeholder="请输入内容"
+                        @select="handleSelect"
+                >
                     <el-button slot="append" icon="el-icon-search" @click="click"></el-button>
-                </el-input>
+                </el-autocomplete>
             </div>
         </div>
         <div class="header-right">
@@ -67,8 +69,9 @@
                 isShow:false,
                 fullscreen: false,
                 name: "kotori",
-                input:'',
                 icno:'http://120.27.241.26/',
+                state1: '',
+                tags: [],
             };
         },
         created() {
@@ -92,9 +95,6 @@
               this.getRequest('/getCountMessNeedRead').then(res=>{
                   this.$store.dispatch("controlSidebar/MCount",res.data.message);
               })
-            },
-            click(){
-                console.log(this.input);
             },
             collapseChage() {
                 this.isShow = !this.isShow;
@@ -137,11 +137,46 @@
                 }
                 this.fullscreen = !this.fullscreen;
             },
+            click(){
+                let tags =[];
+                tags.push( this.arrayforSearch(this.state1));
+                this.$router.push({ name: 'showSquare',params:{ tagList: tags[0] },query: { tag: tags[0].tag_name }})
+            },
+            querySearch(queryString, cb) {
+                var tags =this.arrayToJson( this.tags);
+                var results = queryString ? tags.filter(this.createFilter(queryString)) : tags;
+                // 调用 callback 返回建议列表的数据
+                cb(results);
+            },
+            createFilter(queryString) {
+                return (tags) => {
+                    return (tags.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+                };
+            },
+            handleSelect(item) {
+                console.log(item);
+            },
+            arrayToJson(arr){
+                return arr.map((val,index)=>{
+                    return {
+                        "value": val.tag_name,
+                    }
+                })
+            },
+            arrayforSearch(str){
+                for(let item of this.tags){
+                    if(item.tag_name==str)
+                        return item;
+                }
+            }
         },
         mounted() {
             if (document.body.clientWidth < 1000) {
                 this.collapseChage();
             }
+            this.getRequest("/getAllPictureTag").then(res=>{
+                this.tags=res.data;
+            })
         }
     }
 </script>

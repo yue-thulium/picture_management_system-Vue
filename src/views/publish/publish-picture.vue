@@ -58,17 +58,12 @@
         },
         methods: {
             uploadImg(params){
-                console.log(params.file)
-                console.log(this.imgUrl);
                 this.tags = this.arrayToJson(this.tags);
-                console.log(this.tags)
-                console.log(this.tittle);
                 let formData = new FormData();
                 formData.append("tittle",this.tittle);
                 formData.append("file",params.file);
                 formData.append("tags",this.tags);
                 this.uploadFileRequest('/releaseAtlas',formData).then( res=>{
-                    console.log(res);
                     if(res.data.code == 200) {
                         const h = this.$createElement;
                         this.$notify({
@@ -97,8 +92,6 @@
             onAvatarUpload(event, file, fileList){
             },
             onAvatarChange(file, fileList){
-                console.log('change');
-                console.log(file);
                 // 显示上传成功的图片
                 if(file.status == 'ready')
                     this.imgUrl = URL.createObjectURL(file.raw);
