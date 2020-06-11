@@ -1,13 +1,15 @@
 <template>
-    <div class="page-container" :style="{height:fullHeight+'px'}">
-            <Header></Header>
-            <main-nav-menu />
-        <div class="page-main"id="page-main">
-            <transition name="move" mode="out-in">
-                 <router-view/>
-            </transition>
-        </div>
-    </div>
+    <el-container :style="{height:fullHeight+'px'}">
+        <el-header> <Header></Header></el-header>
+        <el-container style="overflow-x: auto;">
+            <el-aside width="200px"><main-nav-menu /></el-aside>
+            <el-main>
+                <transition name="move" mode="out-in">
+                   <router-view/>
+                </transition>
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
 <script>
@@ -89,17 +91,6 @@
 </script>
 
 <style scoped>
-     .page-main{
-         width: 90%;
-         min-width: 600px;
-         height: 100%;
-    }
-    .page-container{
-        display: flex;
-        height: 100%;
-        flex-wrap: wrap;
-        overflow: auto;
-    }
     a, abbr, acronym, address, applet, article, aside, audio, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details,
     dfn, div, dl, dt, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, iframe, img, ins, kbd,
     label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, sub, summary, sup, table, tbody, td,

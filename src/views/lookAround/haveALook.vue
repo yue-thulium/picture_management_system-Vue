@@ -106,9 +106,7 @@
               })
             },
             getPicSearch(){
-                console.log(this.tagList);
                 this.postRequest('/getAlbumByTags', {tags: this.tagList,pageNumber:this.count}).then(res => {
-                    console.log(res);
                     this.pictureList1.push(...res.data.slice(0,res.data.length/3));
                     this.pictureList2.push(...res.data.slice(res.data.length/3,2*res.data.length/3));
                     this.pictureList3.push(...res.data.slice(2*res.data.length/3));
@@ -141,6 +139,8 @@
         background-color: white;
         height: auto;
         padding: 0 15px;
+        list-style:none;
+        margin: 10px;
     }
     .list{
         height: 100%;
@@ -150,8 +150,5 @@
         margin: 0 ;
         overflow: hidden;
     }
-    .list-item{
-        list-style:none;
-        margin: 10px;
-    }
+
 </style>

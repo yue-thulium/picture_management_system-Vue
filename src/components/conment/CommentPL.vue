@@ -78,6 +78,7 @@
                             message: h('i', {style: 'color: teal'}, '回复成功')
                         });
                         this.$emit('foreupdate');
+                        this.notedata = '';
                     }
                     else {
                         const h = this.$createElement;
@@ -94,6 +95,7 @@
               })
             },
             getCommentFlash(){
+                this.count = 6;
                 this.getRequest(`/getAllAlbumComment/${this.pic_id}/${this.count}`).then(res=>{
                     this.commentList=res.data;
                 })

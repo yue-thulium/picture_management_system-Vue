@@ -3,7 +3,7 @@
          v-infinite-scroll="load"
          :infinite-scroll-disabled="disabled"
          :infinite-scroll-distance="1"
-         :infinite-scroll-immediate="false">
+         infinite-scroll-immediate>
         <div style="display: flex;
             align-items: flex-start;">
             <ul     class="list">
@@ -86,23 +86,23 @@
         padding: 0;
         width: 100%;
         flex: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .list-item{
         background-color: white;
         height: auto;
         padding: 0 15px;
-    }
-    ul{
-        height: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        width: 1180px;
-        padding: 0;
-        margin: 0;
-    }
-    li{
         list-style:none;
         margin: 10px;
-
+    }
+    .list{
+        height: 100%;
+        display: block;
+        align-items: center;
+        padding: 0;
+        margin: 0 ;
+        overflow: hidden;
     }
 </style>

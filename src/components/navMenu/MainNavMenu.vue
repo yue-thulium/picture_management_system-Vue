@@ -74,8 +74,7 @@
 
 <style scoped>
     .sideBar{
-        height: 480px;
-        width: 10%;
+        height: 100%;
         min-width: 120px;
         overflow-y: auto;
     }
