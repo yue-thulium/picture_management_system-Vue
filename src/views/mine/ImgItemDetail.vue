@@ -98,7 +98,13 @@
             },
             isFollow(username){
               this.getRequest(`/ifFollows/${username}`).then(res=>{
-                  this.isActive1 = !this.isActive1;
+                  console.log(res.data.message);
+                  if(res.data.message==="当前未关注"){
+                      this.isActive1=false;
+                  }
+                  else {
+                      this.isActive1 = true;
+                  }
               })
             },
             error(Error){

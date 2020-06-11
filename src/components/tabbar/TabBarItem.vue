@@ -1,7 +1,7 @@
 <template>
     <div class="tab-bar-item">
         <slot name="tabBar">
-            <router-link tag="a" :to="{name:'showSquare',params: { tagList: text },query: { tag: text.tag_name }}" v-for="(text,index) in tabItems" :key="index" class="tag" >{{text.tag_name}}</router-link>
+            <router-link tag="a" :to="{name:'showSquare',query: { tag: text.tag_name }}" v-for="(text,index) in tabItems" :key="index" class="tag" >{{text.tag_name}}</router-link>
         </slot>
     </div>
 </template>

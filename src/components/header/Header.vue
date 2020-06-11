@@ -4,14 +4,14 @@
         <div class="collapse-btn" @click="collapseChage">
             <i class="el-icon-menu"></i>
         </div>
-        <div class="logo">图片管理系统</div>
+        <div class="logo">图片与交流信息系统</div>
         <div class="search">
             <div class="input-search">
                 <el-autocomplete
                         class="inline-input"
                         v-model="state1"
                         :fetch-suggestions="querySearch"
-                        placeholder="请输入内容"
+                        :placeholder="inner"
                         @select="handleSelect"
                 >
                     <el-button slot="append" icon="el-icon-search" @click="click"></el-button>
@@ -48,7 +48,7 @@
             <i class="el-icon-caret-bottom"></i>
           </span>
                     <el-dropdown-menu slot="dropdown">
-                        <router-link :to="{name:'UserSetting'}">
+                        <router-link :to="{name:'baseinf'}">
                             <el-dropdown-item>用户信息</el-dropdown-item>
                         </router-link>
                         <el-dropdown-item command="user">修改密码</el-dropdown-item>
@@ -72,6 +72,7 @@
                 icno:'http://120.27.241.26/',
                 state1: '',
                 tags: [],
+                inner:'清输入内容',
             };
         },
         created() {
@@ -140,7 +141,7 @@
             click(){
                 let tags =[];
                 tags.push( this.arrayforSearch(this.state1));
-                this.$router.push({ name: 'showSquare',params:{ tagList: tags[0] },query: { tag: tags[0].tag_name }})
+                this.$router.push({ name: 'showSquare',query: { tag: tags[0].tag_name }})
             },
             querySearch(queryString, cb) {
                 var tags =this.arrayToJson( this.tags);

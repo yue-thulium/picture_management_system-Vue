@@ -17,7 +17,7 @@
             <el-input v-model="ruleForm.phone"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">创建</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')">注册</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
     </el-form>
@@ -80,13 +80,13 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        console.log(123)
                        this.postRequest('/register',{username:this.ruleForm.username, password:this.ruleForm.pass, email:this.ruleForm.email, phone:this.ruleForm.phone}).then(res=>{
                            if(res.data.code==200){
                                this.$message({
                                    type: 'success',
                                    message: '注册成功 '
                                });
+                               this.$router.replace('/loginPage');
                            }
                            else{
                                this.$message({

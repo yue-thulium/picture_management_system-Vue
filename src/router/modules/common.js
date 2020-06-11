@@ -18,7 +18,7 @@ const commonRouter = {
             name: 'showSquare',
             component: ()=> import('@/views/lookAround/haveALook'),
             meta: {
-                title: '随便看哈都不准？'
+                title: '随便看哈'
             }
         },
         {

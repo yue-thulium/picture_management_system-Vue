@@ -31,7 +31,6 @@
             getFollows(){
                 this.getRequest('/getFans').then(res=>{
                     this.tableData=res.data;
-                    console.log(res);
                 })
             },
         },

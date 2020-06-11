@@ -38,7 +38,6 @@
         },
         data () {
             return {
-                tag_name:'',
                 tagList:[],
                 count: 6,
                 loading: false,
@@ -49,10 +48,9 @@
         },
         created () {
             if(this.$route.query.tag!=null) {
-                this.tag_name = this.$route.query.tag;
                 this.tagList=[];
-                this.tagList.push(this.$route.params.tagList);
-                console.log(this.tagList);
+                this.tagList.push(this.$route.query.tag);
+                this.tagList=this.arrayToJson(this.tagList);
                 this.getPicSearch();
             }
             else{
@@ -62,16 +60,20 @@
         watch: {
             $route (to, from) {
                 if(to.query.tag){
-                    this.tag_name = this.$route.query.tag;
-                    this.tagList.push(this.$route.params.tagList);
-                    console.log(this.tagList);
+                    this.tagList=[];
+                    this.tagList.push(this.$route.query.tag);
+                    this.tagList=this.arrayToJson(this.tagList);
                     this.pictureList1.splice(0);
                     this.pictureList2.splice(0);
                     this.pictureList3.splice(0);
                     this.getPicSearch();
                 }
-                console.log(to)
-                console.log(from)
+                else {
+                    this.pictureList1.splice(0);
+                    this.pictureList2.splice(0);
+                    this.pictureList3.splice(0);
+                    this.getPicture(this.count);
+                }
             }
         },
         computed: {
@@ -104,14 +106,22 @@
               })
             },
             getPicSearch(){
-                this.postRequest('/getAlbumByTags', {tags: JSON.stringify(this.tagList),pageNumber:this.count}).then(res => {
+                console.log(this.tagList);
+                this.postRequest('/getAlbumByTags', {tags: this.tagList,pageNumber:this.count}).then(res => {
+                    console.log(res);
                     this.pictureList1.push(...res.data.slice(0,res.data.length/3));
                     this.pictureList2.push(...res.data.slice(res.data.length/3,2*res.data.length/3));
                     this.pictureList3.push(...res.data.slice(2*res.data.length/3));
                 })
             },
             arrayToJson(arr){
-                return JSON.stringify(arr)
+                return JSON.stringify(arr.map((val,index)=>{
+                    let id = val.replace(/[^0-9]/ig,"");
+                    return {
+                        id:id,
+                        tag_name: val,
+                    }
+                }))
             },
         }
     }

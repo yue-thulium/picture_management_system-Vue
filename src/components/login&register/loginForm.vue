@@ -33,6 +33,10 @@
             }
         },
         mounted: function () {
+            if(this.$route.query.username){
+                this.username = this.$route.query.username;
+                this.password = '';
+            }
         },
         methods: {
             submitClick: function () {
@@ -41,7 +45,7 @@
                         this.loading = true;
                         this.$store.dispatch('user/login', this.loginForm)
                             .then(() => {
-                                this.$router.push('/mainPage/test');
+                                this.$router.push('/mainPage/showSquare');
                                 next();
                                 this.loading = false
                             })
@@ -55,7 +59,6 @@
                 });
             },
             registerClick(){
-                console.log(123)
                 this.$router.push('/registerPage');
             },
         }

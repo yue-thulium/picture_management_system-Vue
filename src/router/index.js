@@ -50,12 +50,18 @@ export const constantRouterMap = [
   {
     path: '/loginPage',
     name: 'login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/login&register/loginPage')
+    component: () => import(/* webpackChunkName: "about" */ '../views/login&register/loginPage'),
+    meta:{
+      title:'登录',
+    }
   } ,
   {
     path: '/registerPage',
     name: 'register',
-    component: () => import(/* webpackChunkName: "about" */ '../views/login&register/register')
+    component: () => import(/* webpackChunkName: "about" */ '../views/login&register/register'),
+    meta:{
+      title:'注册',
+    }
   }
 ];
 

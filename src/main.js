@@ -28,7 +28,7 @@ router.beforeEach(async(to, from, next) => {
   }
   if (hasToken) {
     if (to.path === '/loginPage') {
-      next({path : '/mainPage/test'})
+      next({path : '/mainPage/showSquare'})
     } else {
       const hasRoles = store.getters.roles && store.getters.roles.length > 0;
       if (hasRoles) {
